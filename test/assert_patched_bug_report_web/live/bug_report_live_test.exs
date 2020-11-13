@@ -5,8 +5,8 @@ defmodule AssertPatchedBugReportWeb.PackageLiveTest do
 
   describe "Bug Report" do
     test "when no params - patch url to include foo param", %{conn: conn} do
-      {:error, {:live_redirect, %{to: location}}} = live(conn, Routes.bug_report_path(conn, :index))
-      assert location == "/bug_report?foo=bar"
+      conn = get(conn, Routes.bug_report_path(conn, :index))
+      assert redirected_to(conn) == "/bug_report?foo=bar"
     end
   end
 end
